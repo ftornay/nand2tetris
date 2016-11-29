@@ -1,0 +1,15 @@
+/**
+ * ZeroNeg
+ * Conditionally zeroes and/or negates a 16 number
+ *   According to control bits
+ */
+
+CHIP ZeroNeg {
+    IN in[16], zer, neg;
+    OUT out[16];
+
+    PARTS:
+    Mux16(a=in, b=false, sel=zer, out=tmp);
+    Not16(in=tmp,out=nottmp);
+    Mux16(a=tmp, b=nottmp,sel=neg, out=out);
+}
