@@ -52,12 +52,10 @@ CHIP ALU {
     // Decide whether to output & or +
     Mux16(a=xny, b=xsy, sel=f, out=outtmp1);
 
-    // Preprocess output
-    ZeroNeg(in=outtmp1, zer=false, neg=no, out=outtmp2, out=out);
+    // Preprocess output, check sign at the same time
+    ZeroNeg(in=outtmp1, zer=false, neg=no, out=outtmp2, out[15]= ng, out=out);
 
     // Is output 0?
     Or16Way(in=outtmp2, out=nzr);
     Not(in=nzr, out=zr);
-    // Is output negative? (Check sign bit)
-    And16(a=outtmp2, b=true, out[15]=ng);
 }
