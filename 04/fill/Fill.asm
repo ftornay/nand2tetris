@@ -48,8 +48,7 @@ D=M
 // If no key's pressed, proceed with a 0 value in R1 (paint screen white)
 D;JEQ
 // Otherwise, write -1 to screen (will paint every pixel black)
-D=0
-D=D-1
+D=-1
 @R1
 M=D
 // Now, we're ready to draw
